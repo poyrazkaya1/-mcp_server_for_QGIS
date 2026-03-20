@@ -1,0 +1,10 @@
+2026-03-20 19:32:44,104 - INFO - venv path found
+2026-03-20 19:32:44,105 - INFO - mcp server starts without problem
+2026-03-20 19:32:44,411 - INFO - Plugin loaded with version : 2.5.1
+2026-03-20 19:32:45,268 - DEBUG - Initializing server 'qgis_mcp_server'
+2026-03-20 19:32:45,268 - DEBUG - Registering handler for ListToolsRequest
+2026-03-20 19:32:45,268 - DEBUG - Registering handler for ListResourcesRequest
+2026-03-20 19:32:45,268 - DEBUG - Registering handler for PromptListRequest
+2026-03-20 19:32:45,268 - DEBUG - Registering handler for CallToolRequest
+2026-03-20 19:32:45,272 - DEBUG - Using selector: EpollSelector
+2026-03-20 19:32:45,273 - DEBUG - SseServerTransport initialized with endpoint: /messages/
