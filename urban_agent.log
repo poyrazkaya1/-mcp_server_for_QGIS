@@ -1,10 +1,10 @@
-2026-03-21 12:26:08,131 - INFO - venv path found
-2026-03-21 12:26:08,132 - INFO - mcp server starts without problem
-2026-03-21 12:26:08,397 - INFO - Plugin loaded with version : 2.5.1
-2026-03-21 12:26:09,116 - DEBUG - Initializing server 'qgis_mcp_server'
-2026-03-21 12:26:09,117 - DEBUG - Registering handler for ListToolsRequest
-2026-03-21 12:26:09,117 - DEBUG - Registering handler for ListResourcesRequest
-2026-03-21 12:26:09,117 - DEBUG - Registering handler for PromptListRequest
-2026-03-21 12:26:09,117 - DEBUG - Registering handler for CallToolRequest
-2026-03-21 12:26:15,121 - DEBUG - Using selector: EpollSelector
-2026-03-21 12:26:15,122 - DEBUG - SseServerTransport initialized with endpoint: /messages/
+2026-03-21 12:58:10,224 - INFO - venv path found
+2026-03-21 12:58:10,224 - INFO - mcp server starts without problem
+2026-03-21 12:58:10,488 - INFO - Plugin loaded with version : 2.5.1
+2026-03-21 12:58:11,087 - DEBUG - Initializing server 'qgis_mcp_server'
+2026-03-21 12:58:11,087 - DEBUG - Registering handler for ListToolsRequest
+2026-03-21 12:58:11,088 - DEBUG - Registering handler for ListResourcesRequest
+2026-03-21 12:58:11,088 - DEBUG - Registering handler for PromptListRequest
+2026-03-21 12:58:11,088 - DEBUG - Registering handler for CallToolRequest
+2026-03-21 12:58:17,093 - DEBUG - Using selector: EpollSelector
+2026-03-21 12:58:17,093 - DEBUG - SseServerTransport initialized with endpoint: /messages/
