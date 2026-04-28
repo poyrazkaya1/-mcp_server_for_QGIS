@@ -1,4 +1,4 @@
-# AI-Driven Attribute Analysis Plugin for QGIS
+# MCP Server for QGIS
 
 A QGIS plugin designed to streamline GIS data management and attribute analysis by integrating local Large Language Models (LLMs) via the Model Context Protocol (MCP).
 
