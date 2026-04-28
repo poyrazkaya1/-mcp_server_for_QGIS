@@ -39,6 +39,7 @@ I am actively working on improving the plugin. Here is the current development r
 - [ ] **AI Gateway:** Add support for cloud-based AI models and implement a secure and intiutive UI for API key management and local mcp server setup.
 - [ ] **Model Designer Integration:** Add support for `.model3` files to leverage existing workflows created in QGIS Model Designer.
 - [ ] **Implement Multithreading:** Integrate `QgsTask` to execute LLM operations in the background, ensuring the QGIS interface remains responsive during heavy processing.
+- [ ] **Integrated Chatbot Interface:** Develop a native, intuitive chatbot UI within the plugin for streamlined Model Context Protocol (MCP) integration. Currently, interactions require external interfaces (e.g., LM Studio/Ollama), and this feature aims to bring that experience directly into the QGIS environment.
 - [ ] **Error Handling:** Implement robust validation for empty attribute tables and malformed geometry data.
 - [ ] **Expanded PyQGIS Toolset:** Develop additional tools to broaden AI model capabilities within the QGIS environment.
 - [ ] **QField Integration:** Explore workflows to bridge AI analysis results with QField projects.
