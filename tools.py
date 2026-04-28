@@ -1,10 +1,14 @@
+import sys
 import requests
 import time
+import subprocess
 from urllib.parse import quote
-from qgis.core import QgsProject, QgsVectorLayer, QgsFeature, QgsGeometry, QgsPointXY, edit
-
+from qgis.core import QgsProject, QgsVectorLayer, QgsFeature, QgsGeometry, QgsPointXY, edit, QgsTask,QgsTaskManager,QgsApplication
 from qgis.utils import iface
-from PyQt5.QtGui import QColor
+try:
+ from PyQt6.QtGui import QColor
+except ImportError:
+ from PyQt5.QtGui import QColor
 
 class OSMService:
     def __init__(self, email="QGIS_AI@example.com"):
@@ -36,8 +40,32 @@ class OSMService:
      except Exception as e:
          return {"error": str(e)}
 
-
 class qgis_tools:
+ def layer_renderer(self,layer_name,lon,lat):
+     project = QgsProject.instance()
+     layers = project.mapLayersByName(layer_name)
+     if layers:
+            layer = layers[0]
+     else:
+            # URI must define the CRS to be valid
+            uri = "Point?crs=EPSG:4326"
+            layer = QgsVectorLayer(uri, layer_name, "memory")
+            if not layer.isValid():
+                return "Failed to create a valid QGIS memory layer."
+            project.addMapLayer(layer)
+
+        # 5. Add the feature with an explicit edit session
+            with edit(layer):
+              feat = QgsFeature(layer.fields())
+              feat.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lon, lat)))
+              layer.updateExtents() 
+              QgsProject.instance().addMapLayer(layer)
+            # Check if the feature was actually accepted
+              if not layer.addFeature(feat):
+               layer.triggerRepaint()
+            iface.mapCanvas().refresh()
+            return "işlem tamamlandı"
+        
  def list_active_layers(*args, **kwargs) -> str:
   all_layers = list(QgsProject.instance().mapLayers().values())
   if not all_layers:
@@ -59,36 +87,16 @@ class qgis_tools:
         lat = float(result["lat"])
 
         # 3. Access QGIS through the instance
-        project = QgsProject.instance()
-        
-        # 4. Find or Create the layer
-        layers = project.mapLayersByName(layer_name)
-        if layers:
-            layer = layers[0]
-        else:
-            # URI must define the CRS to be valid
-            uri = "Point?crs=EPSG:4326"
-            layer = QgsVectorLayer(uri, layer_name, "memory")
-            if not layer.isValid():
-                return "Failed to create a valid QGIS memory layer."
-            project.addMapLayer(layer)
-
-        # 5. Add the feature with an explicit edit session
-        with edit(layer):
-            feat = QgsFeature(layer.fields())
-            feat.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lon, lat)))
-            layer.updateExtents() 
-            QgsProject.instance().addMapLayer(layer)
-            # Check if the feature was actually accepted
-            if not layer.addFeature(feat):
-                return f"QGIS layer refused the feature for '{place_name}'"
-
-        # 6. Force the UI to show the new point
-        layer.triggerRepaint()
-        iface.mapCanvas().refresh()
-        
+       
         return f"Successfully added {place_name} at ({lat}, {lon}) to layer '{layer_name}'"
 
     except Exception as e:
         # This will catch PyQGIS specific errors (like Thread errors)
-        return f"PyQGIS Error: {str(e)}"
+        return f"PyQGIS Error: {str(e)}" 
+# 
+def run(self,tool_name, *args, **kwargs):
+    task = QgsTask.fromFunction('MCP_server_task', tool_name,on_finished=completed, wait_time=4)
+    QgsApplication.taskManager().addTask(task)
+    iface.mapCanvas().refreshAllLayers()
+def completed():
+   return "finished" 
